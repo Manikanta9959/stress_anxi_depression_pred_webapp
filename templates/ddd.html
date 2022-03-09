@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stress Anxiety and Depression Predictor</title>
+
+    <style>
+      
+      body {
+        background-color: rgb(207, 168, 199);
+        font-family: Verdana;
+        text-align: center;
+        height:100vh;
+        
+        
+      }
+
+      form{
+        background-color: #fff;
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 30px 20px;
+        box-shadow: 2px 5px 10px rgba(121, 129, 106, 0.5);
+        border-radius: 5px;
+      }
+      #res{
+        background-color: #fff;
+        max-width: 500px;
+        margin: 50px auto;
+        padding: 30px 20px;
+        box-shadow: 2px 5px 10px rgba(121, 129, 106, 0.5);
+      }
+      .btn{
+          border: none;
+          background-color: inherit;
+          padding: 14px 28px;
+          font-size: 16px;
+          cursor: pointer;
+          display: inline-block;
+        }
+
+        
+      .back {
+          color: rgb(12, 12, 12);
+      }
+
+      .back:hover {
+          background-color: #2320e2;
+          color: white;
+      }
+
+      #result{
+        font-family: "Times New Roman", Times, serif;
+      }
+      .form-control {
+        text-align: left;
+        margin-bottom: 25px;
+      }
+ 
+      .form-control label {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      .form-control input,
+        select {
+          border: 1px solid #777;
+          border-radius: 2px;
+          font-family: inherit;
+          padding: 10px;
+          display: block;
+          width: 95%;
+      }
+
+      button {
+          background-color: #f55d16;
+          border: 1px solid rgb(26, 25, 25);
+          border-radius: 5px;
+          font-family: inherit;
+          font-size: 21px;
+          display: block;
+          width: 100%;
+          margin-top: 50px;
+          margin-bottom: 20px;
+      }
+
+      .res {
+        background-color: #e7e0dd;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Stress Anxiety and Depression Predictor</h1>
+    <form id="form" action="/result" method="POST">
+      <div class="form-control">
+        <label for="gender" id="label-gender"> Enter Your Gender: </label>
+
+        <select id="gender" required>
+          <option value="" disabled selected>Gender</option>
+          <option value="0">Male</option>
+          <option value="1">Female</option>
+        </select>
+      </div>
+
+      <div class="form-control">
+        <label for="martialstatus" id="label-martialstatus">
+          Enter Your Martial Status:
+        </label>
+
+        <select id="martialstatus" required>
+          <option value="" disabled selected>Martial Status</option>
+          <option value="0">Married</option>
+          <option value="1">Unmarried</option>
+        </select>
+      </div>
+
+      <div class="form-control">
+        <label for="age" id="label-age"> Enter Your Age: </label>
+
+        <select id="age" required>
+          <option value="" disabled selected>Age</option>
+          <option value="0">15-25</option>
+          <option value="1">25-35</option>
+          <option value="2">35-55</option>
+          <option value="3">45-60</option>
+          <option value="4">Above 60</option>
+        </select>
+      </div>
+
+      <div class="form-control">
+        <label for="education" id="label-education">
+          Enter Your Education:
+        </label>
+
+        <select id="education" required>
+          <option value="" disabled selected>Education</option>
+          <option value="0">SSC</option>
+          <option value="1">Intermediate</option>
+          <option value="2">Degree / B.SC</option>
+          <option value="3">Diploma</option>
+          <option value="4">BSC Nursing / GNM</option>
+          <option value="5">DMLT / BMLT</option>
+          <option value="6">B Pharmacy</option>
+          <option value="7">MBBS</option>
+          <option value="8">M.SC</option>
+        </select>
+      </div>
+
+      <div class="form-control">
+        <label
+          for="Role in healthcare workers"
+          id="label-Role in healthcare workers"
+        >
+          Enter Your Role in Healthcare Workers:
+        </label>
+
+        <select id="Role in healthcare workers" required>
+          <option value="" disabled selected>Role in Healthcare Workers</option>
+          <option value="0">Asha worker / Pharmaceutical</option>
+          <option value="1">Labratory Technician</option>
+          <option value="2">Hospital Staff</option>
+          <option value="4">Research scientist / Research Assistant</option>
+          <option value="5">Nurse</option>
+          <option value="6">Doctor</option>
+        </select>
+      </div>
+
+      <div class="form-control">
+        <label for="workinghours" id="label-workinghours">
+          Enter Your Working Hours:
+        </label>
+
+        <select id="workinghours" required>
+          <option value="" disabled selected>Working Hours</option>
+          <option value="0">5-8 hrs</option>
+          <option value="1">8-10 hrs</option>
+          <option value="2">10-12 hrs</option>
+          <option value="3">12-14 hrs</option>
+          <option value="4">Above 14 hrs</option>
+        </select>
+      </div>
+
+      <div class="form-control">
+        <label for="income" id="label-income"> Enter Your Income: </label>
+
+        <select id="income" required>
+          <option value="" disabled selected>Income</option>
+          <option value="0">Below 1 Lakh</option>
+          <option value="1">1,00,000 - 3,00,000</option>
+          <option value="2">3,00,000 - 5,00,000</option>
+          <option value="3">Above 5,00,000</option>
+        </select>
+      </div>
+      <button type="submit" value="submit" >Predict</button>
+    </form>
+
+    <div id ="res" style="display:none;">
+      <h2 id="result"></h2>
+    </div>
+    <div id="back" onclick="myFunc()" style="display:none;">
+      <button class="btn back">Back</button>
+    </div>
+   
+
+  </body>
+
+  <script>
+    window.onload = () => {
+      const form = document.forms["form"];
+      console.log(form);
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        var gender = document.getElementById("gender").value;
+        var martialstatus = document.getElementById("martialstatus").value;
+        var age = document.getElementById("age").value;
+        var education = document.getElementById("education").value;
+        var Role_in_healthcare_workers = document.getElementById(
+          "Role in healthcare workers"
+        ).value;
+        var workinghours = document.getElementById("workinghours").value;
+        var income = document.getElementById("income").value;
+        console.log(
+          JSON.stringify({
+            gender: gender,
+            martialstatus: martialstatus,
+            age: age,
+            education: education,
+            Role_in_healthcare_workers: Role_in_healthcare_workers,
+            workinghours: workinghours,
+            income: income,
+          })
+        );
+
+        const predictFunc = async () => {
+          const response = await fetch("/result", {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              gender: gender,
+              martialstatus: martialstatus,
+              age: age,
+              education: education,
+              Role_in_healthcare_workers: Role_in_healthcare_workers,
+              workinghours: workinghours,
+              income: income,
+            }),
+          });
+          const data = await response.json();
+          document.getElementById("result").innerHTML = Object.keys(data).map(p => p + ": " + data[p]).join("<br>")
+          myFunction()
+        };
+        predictFunc();
+      });
+    };
+    function toggleDispplay(showForm) {
+         document.getElementById("form").style.display = showForm ? "block": "none";
+         document.getElementById("back").style.display = !showForm ? "block": "none";
+         document.getElementById("res").style.display = !showForm ? "block": "none";
+    }
+    function myFunction() {
+         toggleDispplay(false);
+    }
+    function myFunc(){
+      toggleDispplay(true);
+    }
+    
+  </script>
+  
+</html>
